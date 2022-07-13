@@ -1131,7 +1131,7 @@ func (f *File) drawPlotAreaTxPr() *cTxPr {
 						SchemeClr: &aSchemeClr{
 							Val:    "tx1",
 							LumMod: &attrValInt{Val: intPtr(15000)},
-							LumOff: &attrValInt{Val: intPtr(85000)},
+							LumOff: &attrValInt{Val: intPtr(0)},
 						},
 					},
 					Latin: &aLatin{Typeface: "+mn-lt"},
