@@ -759,6 +759,7 @@ func (f *File) drawChartSeries(formatSet *formatChart) *[]cSer {
 			Val:              f.drawChartSeriesVal(formatSet.Series[k], formatSet),
 			XVal:             f.drawChartSeriesXVal(formatSet.Series[k], formatSet),
 			YVal:             f.drawChartSeriesYVal(formatSet.Series[k], formatSet),
+			Smooth:           &attrValBool{Val: boolPtr(false)},
 			BubbleSize:       f.drawCharSeriesBubbleSize(formatSet.Series[k], formatSet),
 			Bubble3D:         f.drawCharSeriesBubble3D(formatSet),
 		})
