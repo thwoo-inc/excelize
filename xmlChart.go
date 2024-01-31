@@ -596,6 +596,7 @@ type ChartMarker struct {
 	Fill   Fill
 	Symbol string
 	Size   int
+	Fill   Fill
 }
 
 // ChartLine directly maps the format settings of the chart line.

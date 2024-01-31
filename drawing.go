@@ -837,6 +837,9 @@ func (f *File) drawChartSeriesVal(v ChartSeries, opts *Chart) *cVal {
 // drawChartSeriesMarker provides a function to draw the c:marker element by
 // given data index and format sets.
 func (f *File) drawChartSeriesMarker(i int, opts *Chart) *cMarker {
+	var srgbClr *attrValString
+	var schemeClr *aSchemeClr
+
 	defaultSymbol := map[ChartType]*attrValString{Scatter: {Val: stringPtr("circle")}}
 	marker := &cMarker{
 		Symbol: defaultSymbol[opts.Type],
@@ -848,19 +851,24 @@ func (f *File) drawChartSeriesMarker(i int, opts *Chart) *cMarker {
 	if size := intPtr(opts.Series[i].Marker.Size); *size != 0 {
 		marker.Size = &attrValInt{Val: size}
 	}
+
+	if color := opts.Series[i].Marker.Fill.Color; len(color) == 1 {
+		srgbClr = &attrValString{Val: stringPtr(strings.TrimPrefix(color[0], "#"))}
+	} else {
+		schemeClr = &aSchemeClr{Val: "accent" + strconv.Itoa(i+1)}
+	}
+
 	if i < 6 {
 		marker.SpPr = &cSpPr{
 			SolidFill: &aSolidFill{
-				SchemeClr: &aSchemeClr{
-					Val: "accent" + strconv.Itoa(i+1),
-				},
+				SchemeClr: schemeClr,
+				SrgbClr:   srgbClr,
 			},
 			Ln: &aLn{
 				W: 9252,
 				SolidFill: &aSolidFill{
-					SchemeClr: &aSchemeClr{
-						Val: "accent" + strconv.Itoa(i+1),
-					},
+					SchemeClr: schemeClr,
+					SrgbClr:   srgbClr,
 				},
 			},
 		}
