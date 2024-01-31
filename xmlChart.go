@@ -590,6 +590,7 @@ type ChartLegend struct {
 type ChartMarker struct {
 	Symbol string
 	Size   int
+	Fill   Fill
 }
 
 // ChartLine directly maps the format settings of the chart line.
